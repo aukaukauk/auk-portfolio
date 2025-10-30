@@ -2,10 +2,23 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import { createRouter, createWebHistory } from 'vue-router'
 
-const app = createApp(App)
+import Home from './pages/Home.vue'
 
-app.use(router)
 
-app.mount('#app')
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        { path: '/', name: 'home', component: Home },
+
+        { path: '/:pathMatch(.*)*', redirect: '/' },
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) return savedPosition
+        return { top: 0 }
+    }
+})
+
+createApp(App).use(router).mount('#app')

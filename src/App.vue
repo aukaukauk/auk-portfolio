@@ -1,85 +1,31 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+  <div>
+    <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-neutral-950/60 border-b border-neutral-200 dark:border-neutral-800">
+      <nav class="container-1080 h-16 flex items-center justify-between">
+        <RouterLink to="/" class="font-medium tracking-tight">Your Name</RouterLink>
+        <ul class="flex items-center gap-6 text-sm">
+          <li><RouterLink to="/" class="hover:underline underline-offset-4">Home</RouterLink></li>
+        </ul>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <RouterView />
+    <main id="content" class="py-10 md:py-14">
+      <RouterView />
+    </main>
+
+    <footer class="border-t border-neutral-200 dark:border-neutral-800 py-10 text-sm">
+      <div class="container-1080 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <p class="text-neutral-500">© {{ year }} — Built with Vue + Tailwind</p>
+        <a href="#" class="btn-link">Back to top ↑</a>
+      </div>
+    </footer>
+  </div>
 </template>
 
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+const year = new Date().getFullYear()
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
